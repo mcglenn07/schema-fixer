@@ -1,0 +1,4 @@
+order_id,customer_email,quantity,total,status,order_date
+O-101,ada@example.com,2,39.5,Completed,2026-11-06
+O-102,ben@example.com,1,12.0,Awaiting payment,2026-10-15
+O-103,cara@example.com,3,75.0,Void,2026-09-20

@@ -1,0 +1,60 @@
+fields:
+  requester_email:
+    sources:
+    - requester_email
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  subject:
+    sources:
+    - subject
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  priority:
+    sources:
+    - priority
+    transform:
+      name: map_values
+      values:
+        P1: urgent
+        P2: high
+    reason: 'Source codebook (Glenn, 2026-11-06): P1 means urgent and P2 means high, the standard support convention; P9 has no known equivalent.'
+  status:
+    sources:
+    - status
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  created_date:
+    sources:
+    - created_date
+    transform:
+      name: parse_date
+      format: '%d-%m-%Y'
+    reason: The export contract is day-month-year.
+  phone:
+    sources:
+    - phone
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  ticket_id:
+    sources:
+    - ticketid
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+drop:
+- sources:
+  - debug
+  transform:
+    name: drop
+  reason: Column is outside the target schema.
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows:
+- 3
+quarantine_reasons:
+  3:
+  - 'priority: unknown P9 code'

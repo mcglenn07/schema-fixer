@@ -1,0 +1,56 @@
+fields:
+  ticket_id:
+    sources:
+    - ticket_id
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  requester_email:
+    sources:
+    - requester_email
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  subject:
+    sources:
+    - subject
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  priority:
+    sources:
+    - priority
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  status:
+    sources:
+    - status
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  created_date:
+    sources:
+    - created_date
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  phone:
+    sources:
+    - phone
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+drop: []
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows:
+- 2
+- 3
+quarantine_reasons:
+  2:
+  - 'subject: required value is null'
+  - 'requester_email: invalid syntax'
+  3:
+  - 'priority: blank required value'
+  - 'phone: invalid international number'

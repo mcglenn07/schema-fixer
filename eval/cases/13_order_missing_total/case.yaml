@@ -1,0 +1,11 @@
+id: 13_order_missing_total
+schema: ../../../schemas/order.yaml
+input: incoming.json
+description: Quantity alone cannot recover total; all rows lack a required amount.
+breakages:
+- missing_required
+review_status: approved
+required_findings:
+- code: missing_required
+  field: total
+  source: null

@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "schema-fixer"
+version = "0.1.0"
+description = "Inspect incoming data and propose checked schema mapping drafts."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "email-validator==2.3.0",
+    "gradio==6.31.0",
+    "openai==3.46.0",
+    "pandas==3.1.1",
+    "pydantic==2.14.3",
+    "python-dotenv==1.2.4",
+    "pyyaml==6.0.3",
+    "rapidfuzz==3.14.6",
+    "rich==15.0.0",
+    "typer==0.27.3",
+]
+
+[project.scripts]
+schema-fixer = "schema_fixer.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/schema_fixer"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+extend-exclude = [".python"]
+
+[dependency-groups]
+dev = [
+    "pytest==9.2.0",
+    "ruff==0.17.4",
+]

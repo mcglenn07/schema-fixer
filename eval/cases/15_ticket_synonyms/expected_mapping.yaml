@@ -1,0 +1,48 @@
+fields:
+  phone:
+    sources:
+    - phone
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  ticket_id:
+    sources:
+    - case_number
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  requester_email:
+    sources:
+    - sender
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  subject:
+    sources:
+    - title
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  priority:
+    sources:
+    - severity
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  status:
+    sources:
+    - state
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  created_date:
+    sources:
+    - opened_on
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+drop: []
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows: []
+quarantine_reasons: {}

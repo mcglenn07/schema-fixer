@@ -1,0 +1,14 @@
+id: 14_order_header_typos
+schema: ../../../schemas/order.yaml
+input: incoming.csv
+description: Typoed quantity and customer email headers.
+breakages:
+- header_typos
+review_status: approved
+required_findings:
+- code: likely_rename
+  field: quantity
+  source: quantitty
+- code: likely_rename
+  field: customer_email
+  source: customer_emali

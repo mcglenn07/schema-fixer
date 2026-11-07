@@ -1,0 +1,197 @@
+{
+  "provider": "openai",
+  "case": "18_ticket_nulls_and_formats",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:51.971127+00:00",
+  "error": null,
+  "latency_seconds": 4.63161504099844,
+  "mapping": {
+    "fields": [
+      {
+        "target": "ticket_id",
+        "sources": [
+          "ticket_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Direct matching identifier column; samples have string ticket IDs."
+      },
+      {
+        "target": "requester_email",
+        "sources": [
+          "requester_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Direct matching email column; redacted samples prevent checking individual email validity."
+      },
+      {
+        "target": "subject",
+        "sources": [
+          "subject"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.98,
+        "reason": "Direct matching subject column; some nulls are reported."
+      },
+      {
+        "target": "priority",
+        "sources": [
+          "priority"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.95,
+        "reason": "Direct matching column; shown labels are valid target values, though nulls are reported."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Direct matching column; all shown labels match the target enum."
+      },
+      {
+        "target": "created_date",
+        "sources": [
+          "created_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 1.0,
+        "reason": "Matching date column; all samples use a four-digit year followed by month and day."
+      },
+      {
+        "target": "phone",
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "string"
+        },
+        "confidence": 0.75,
+        "reason": "Matching phone column; integer inference may lose formatting or leading zeros, and redacted samples do not expose the values."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1725,
+    "input_tokens_details": {
+      "cache_write_tokens": 493,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 459,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2184
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000303715,
+  "score": {
+    "field_correct": 6,
+    "field_total": 7,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 6,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {
+      "2": [
+        "requester_email",
+        "subject"
+      ],
+      "3": [
+        "phone",
+        "priority"
+      ]
+    },
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 1,
+      "issues": [
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "requester_email",
+          "source": null,
+          "row": 2,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (string_type); this row would be quarantined.",
+          "field": "subject",
+          "source": null,
+          "row": 2,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (string_type); this row would be quarantined.",
+          "field": "priority",
+          "source": null,
+          "row": 3,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "phone",
+          "source": null,
+          "row": 3,
+          "severity": "warning"
+        }
+      ],
+      "quarantine_rows": [
+        2,
+        3
+      ]
+    },
+    "failures": [
+      {
+        "case": "18_ticket_nulls_and_formats",
+        "field": "created_date",
+        "expected": {
+          "sources": [
+            "created_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "created_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      }
+    ]
+  }
+}

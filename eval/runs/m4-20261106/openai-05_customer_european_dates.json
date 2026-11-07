@@ -1,0 +1,110 @@
+{
+  "provider": "openai",
+  "case": "05_customer_european_dates",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:53.449883+00:00",
+  "error": null,
+  "latency_seconds": 4.8391547500068555,
+  "mapping": {
+    "fields": [
+      {
+        "target": "email",
+        "sources": [
+          "email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Source name and string profile match the required email field; samples are redacted."
+      },
+      {
+        "target": "full_name",
+        "sources": [
+          "full_name"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Source name and samples support a full-name string."
+      },
+      {
+        "target": "plan",
+        "sources": [
+          "plan"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Observed labels match the target enum values free and pro."
+      },
+      {
+        "target": "signup_date",
+        "sources": [
+          "signup_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%d/%m/%Y"
+        },
+        "confidence": 0.95,
+        "reason": "Sample 31/02/2026 establishes day/month/year order because 31 cannot be the month; that row is invalid, but does not undermine the column format. Sample 20/09/2026 is consistent."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1521,
+    "input_tokens_details": {
+      "cache_write_tokens": 289,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 392,
+    "output_tokens_details": {
+      "reasoning_tokens": 90
+    },
+    "total_tokens": 1913
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000244715,
+  "score": {
+    "field_correct": 4,
+    "field_total": 4,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 4,
+    "quarantine_correct": true,
+    "case_passed": true,
+    "predicted_quarantine": {
+      "2": [
+        "signup_date"
+      ]
+    },
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 2,
+      "issues": [
+        {
+          "code": "transform_failed",
+          "message": "parse_date failed; this row would be quarantined.",
+          "field": "signup_date",
+          "source": null,
+          "row": 2,
+          "severity": "warning"
+        }
+      ],
+      "quarantine_rows": [
+        2
+      ]
+    },
+    "failures": []
+  }
+}

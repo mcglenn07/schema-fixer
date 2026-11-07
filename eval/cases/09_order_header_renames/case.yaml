@@ -1,0 +1,11 @@
+id: 09_order_header_renames
+schema: ../../../schemas/order.yaml
+input: incoming.csv
+description: Capitalization and spaces differ from target names.
+breakages:
+- renames
+review_status: approved
+required_findings:
+- code: likely_rename
+  field: order_id
+  source: Order ID

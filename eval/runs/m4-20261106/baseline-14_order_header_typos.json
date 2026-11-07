@@ -1,0 +1,104 @@
+{
+  "provider": "baseline",
+  "case": "14_order_header_typos",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:33.667264+00:00",
+  "error": null,
+  "latency_seconds": 2.5583009119145572e-05,
+  "mapping": {
+    "fields": [
+      {
+        "target": "order_id",
+        "sources": [
+          "order_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "customer_email",
+        "sources": [
+          "customer_emali"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.923,
+        "reason": "Mutual-best header similarity; this is not semantic certainty."
+      },
+      {
+        "target": "quantity",
+        "sources": [
+          "quantitty"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.941,
+        "reason": "Mutual-best header similarity; this is not semantic certainty."
+      },
+      {
+        "target": "total",
+        "sources": [
+          "total"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "order_date",
+        "sources": [
+          "order_date"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": null,
+  "response_model": null,
+  "service_tier": null,
+  "cost_usd": 0.0,
+  "score": {
+    "field_correct": 6,
+    "field_total": 6,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 6,
+    "quarantine_correct": true,
+    "case_passed": true,
+    "predicted_quarantine": {},
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 3,
+      "issues": [],
+      "quarantine_rows": []
+    },
+    "failures": []
+  }
+}

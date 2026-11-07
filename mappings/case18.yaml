@@ -1,0 +1,68 @@
+version: 1
+status: approved
+approved_at: '2026-11-06T14:26:04.459986+00:00'
+schema_path: ../schemas/support_ticket.yaml
+schema_sha256: d5f184cd7e437174cff3ddab89f5f321e67417a52a1ed694fca947a42969b386
+source_columns:
+- ticket_id
+- requester_email
+- subject
+- priority
+- status
+- created_date
+- phone
+mapping:
+  fields:
+  - target: ticket_id
+    sources:
+    - ticket_id
+    transform:
+      name: rename
+    confidence: 1.0
+    reason: Exact header match; values still require validation.
+  - target: requester_email
+    sources:
+    - requester_email
+    transform:
+      name: rename
+    confidence: 1.0
+    reason: Exact header match; values still require validation.
+  - target: subject
+    sources:
+    - subject
+    transform:
+      name: rename
+    confidence: 1.0
+    reason: Exact header match; values still require validation.
+  - target: priority
+    sources:
+    - priority
+    transform:
+      name: rename
+    confidence: 1.0
+    reason: Exact header match; values still require validation.
+  - target: status
+    sources:
+    - status
+    transform:
+      name: rename
+    confidence: 1.0
+    reason: Exact header match; values still require validation.
+  - target: created_date
+    sources:
+    - created_date
+    transform:
+      name: rename
+    confidence: 1.0
+    reason: Exact header match; values still require validation.
+  - target: phone
+    sources:
+    - phone
+    transform:
+      name: rename
+    confidence: 1.0
+    reason: Exact header match; values still require validation.
+  drop: []
+  unmapped_required: []
+  unmapped_optional: []
+approval_sha256: c708310f447479286a13ca0fea1b25860fe6696ff416a44d55a72283f05b4207

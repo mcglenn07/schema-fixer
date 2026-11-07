@@ -1,0 +1,12 @@
+id: 06_customer_enum_drift
+schema: ../../../schemas/customer.yaml
+input: incoming.csv
+description: Known plan labels can be mapped; Enterprise has no supported equivalent
+  and must not be guessed.
+breakages:
+- enum_drift
+review_status: approved
+required_findings:
+- code: enum_drift
+  field: plan
+  source: plan

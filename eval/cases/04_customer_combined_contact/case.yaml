@@ -1,0 +1,15 @@
+id: 04_customer_combined_contact
+schema: ../../../schemas/customer.yaml
+input: incoming.csv
+description: One Contact column contains name then email, separated by an exact space-pipe-space
+  delimiter.
+breakages:
+- combined_fields
+review_status: approved
+required_findings:
+- code: missing_required
+  field: email
+  source: null
+- code: extra_column
+  field: null
+  source: Contact

@@ -1,0 +1,221 @@
+{
+  "provider": "openai",
+  "case": "19_ticket_resolved_export",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:56.609576+00:00",
+  "error": null,
+  "latency_seconds": 6.138227334013209,
+  "mapping": {
+    "fields": [
+      {
+        "target": "ticket_id",
+        "sources": [
+          "ticket_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact name and matching string samples."
+      },
+      {
+        "target": "requester_email",
+        "sources": [
+          "requester_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.98,
+        "reason": "Exact name; redaction markers indicate email data, not literal values."
+      },
+      {
+        "target": "subject",
+        "sources": [
+          "subject"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact name and matching text samples."
+      },
+      {
+        "target": "priority",
+        "sources": [
+          "priority"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Exact name; sampled labels match target enum values, though samples may not cover all values."
+      },
+      {
+        "target": "created_date",
+        "sources": [
+          "created_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 1.0,
+        "reason": "Exact name; all samples use year-month-day with hyphens, e.g. 2026-11-06."
+      }
+    ],
+    "drop": [
+      {
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.85,
+        "reason": "Source appears related to the optional phone target, but is inferred as integer and redacted samples do not establish a safe string conversion or phone format; target left unmapped."
+      },
+      {
+        "sources": [
+          "internal_note"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.99,
+        "reason": "No target field represents internal notes."
+      },
+      {
+        "sources": [
+          "agent_id"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.99,
+        "reason": "No target field represents agent identifiers."
+      }
+    ],
+    "unmapped_required": [
+      "status"
+    ],
+    "unmapped_optional": [
+      "phone"
+    ]
+  },
+  "usage": {
+    "input_tokens": 1765,
+    "input_tokens_details": {
+      "cache_write_tokens": 533,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 496,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2261
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000327215,
+  "score": {
+    "field_correct": 5,
+    "field_total": 7,
+    "missing_correct": 1,
+    "missing_total": 1,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 5,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {
+      "1": [
+        "status"
+      ],
+      "2": [
+        "status"
+      ],
+      "3": [
+        "status"
+      ]
+    },
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "status",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        },
+        {
+          "code": "unmapped_optional",
+          "message": "Optional target will remain empty.",
+          "field": "phone",
+          "source": null,
+          "row": null,
+          "severity": "warning"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "19_ticket_resolved_export",
+        "field": "created_date",
+        "expected": {
+          "sources": [
+            "created_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "created_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "19_ticket_resolved_export",
+        "field": "phone",
+        "expected": {
+          "sources": [
+            "phone"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "state": "unmapped_optional"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "19_ticket_resolved_export",
+        "field": "(drop)",
+        "expected": [
+          "agent_id",
+          "internal_note"
+        ],
+        "got": [
+          "agent_id",
+          "internal_note",
+          "phone"
+        ],
+        "reason": "Unused source accounting differs."
+      }
+    ]
+  }
+}

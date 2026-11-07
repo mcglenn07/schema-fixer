@@ -1,0 +1,175 @@
+{
+  "provider": "openai",
+  "case": "06_customer_enum_drift",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:58.294251+00:00",
+  "error": null,
+  "latency_seconds": 5.49008387500362,
+  "mapping": {
+    "fields": [
+      {
+        "target": "email",
+        "sources": [
+          "email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Direct email field; redacted samples indicate sensitive values."
+      },
+      {
+        "target": "full_name",
+        "sources": [
+          "full_name"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Direct full-name field; samples support the match."
+      },
+      {
+        "target": "signup_date",
+        "sources": [
+          "signup_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 0.99,
+        "reason": "Samples use a consistent year-month-day format, including 2026-11-06."
+      }
+    ],
+    "drop": [
+      {
+        "sources": [
+          "plan"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.99,
+        "reason": "Plan samples include FREE, Pro Monthly, and Enterprise; the source does not provide enough evidence to map all values safely to the target enum."
+      }
+    ],
+    "unmapped_required": [],
+    "unmapped_optional": [
+      "plan"
+    ]
+  },
+  "usage": {
+    "input_tokens": 1525,
+    "input_tokens_details": {
+      "cache_write_tokens": 293,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 282,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1807
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000190215,
+  "score": {
+    "field_correct": 2,
+    "field_total": 4,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 3,
+    "quarantine_correct": false,
+    "case_passed": false,
+    "predicted_quarantine": {},
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 3,
+      "issues": [
+        {
+          "code": "unmapped_optional",
+          "message": "Optional target will remain empty.",
+          "field": "plan",
+          "source": null,
+          "row": null,
+          "severity": "warning"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "06_customer_enum_drift",
+        "field": "plan",
+        "expected": {
+          "sources": [
+            "plan"
+          ],
+          "transform": {
+            "name": "map_values",
+            "values": [
+              {
+                "source": "FREE",
+                "target": "free"
+              },
+              {
+                "source": "Pro Monthly",
+                "target": "pro"
+              }
+            ]
+          }
+        },
+        "got": {
+          "state": "unmapped_optional"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "06_customer_enum_drift",
+        "field": "signup_date",
+        "expected": {
+          "sources": [
+            "signup_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "signup_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "06_customer_enum_drift",
+        "field": "(drop)",
+        "expected": [],
+        "got": [
+          "plan"
+        ],
+        "reason": "Unused source accounting differs."
+      },
+      {
+        "case": "06_customer_enum_drift",
+        "field": "(quarantine)",
+        "expected": {
+          "3": [
+            "plan"
+          ]
+        },
+        "got": {},
+        "reason": "Predicted row positions or failing target fields differ."
+      }
+    ]
+  }
+}

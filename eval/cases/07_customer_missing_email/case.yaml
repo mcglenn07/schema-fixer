@@ -1,0 +1,11 @@
+id: 07_customer_missing_email
+schema: ../../../schemas/customer.yaml
+input: incoming.csv
+description: No email source exists. Leave email unmapped; never invent an address.
+breakages:
+- missing_required
+review_status: approved
+required_findings:
+- code: missing_required
+  field: email
+  source: null

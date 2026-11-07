@@ -1,0 +1,169 @@
+{
+  "provider": "openai",
+  "case": "12_order_slash_dates",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:25.957596+00:00",
+  "error": null,
+  "latency_seconds": 4.73146287498821,
+  "mapping": {
+    "fields": [
+      {
+        "target": "order_id",
+        "sources": [
+          "order_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact matching identifier column and string samples."
+      },
+      {
+        "target": "customer_email",
+        "sources": [
+          "customer_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.9,
+        "reason": "Matching column with redacted email samples; underlying values cannot be checked."
+      },
+      {
+        "target": "quantity",
+        "sources": [
+          "quantity"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "integer"
+        },
+        "confidence": 1.0,
+        "reason": "Matching column and integer-valued samples."
+      },
+      {
+        "target": "total",
+        "sources": [
+          "total"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "number"
+        },
+        "confidence": 1.0,
+        "reason": "Matching column and numeric samples."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "map_values",
+          "values": [
+            {
+              "source": "paid",
+              "target": "paid"
+            },
+            {
+              "source": "pending",
+              "target": "pending"
+            },
+            {
+              "source": "cancelled",
+              "target": "cancelled"
+            }
+          ]
+        },
+        "confidence": 1.0,
+        "reason": "All sampled labels match the target enum; samples may not cover every source value."
+      },
+      {
+        "target": "order_date",
+        "sources": [
+          "order_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y/%m/%d"
+        },
+        "confidence": 1.0,
+        "reason": "Samples use year/month/day order, with four-digit year first and slash separators."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1660,
+    "input_tokens_details": {
+      "cache_write_tokens": 428,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 437,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2097
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.00028459,
+  "score": {
+    "field_correct": 5,
+    "field_total": 6,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 6,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {},
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 3,
+      "issues": [],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "12_order_slash_dates",
+        "field": "status",
+        "expected": {
+          "sources": [
+            "status"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "status"
+          ],
+          "transform": {
+            "name": "map_values",
+            "values": [
+              {
+                "source": "cancelled",
+                "target": "cancelled"
+              },
+              {
+                "source": "paid",
+                "target": "paid"
+              },
+              {
+                "source": "pending",
+                "target": "pending"
+              }
+            ]
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      }
+    ]
+  }
+}

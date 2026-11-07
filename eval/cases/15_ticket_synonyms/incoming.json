@@ -1,0 +1,29 @@
+[
+  {
+    "case_number": "T-101",
+    "sender": "ada@example.com",
+    "title": "Cannot log in",
+    "severity": "high",
+    "state": "open",
+    "opened_on": "2026-11-06",
+    "phone": "+639171234567"
+  },
+  {
+    "case_number": "T-102",
+    "sender": "ben@example.com",
+    "title": "Invoice question",
+    "severity": "normal",
+    "state": "pending",
+    "opened_on": "2026-10-15",
+    "phone": "+12025550123"
+  },
+  {
+    "case_number": "T-103",
+    "sender": "cara@example.com",
+    "title": "Cancel account",
+    "severity": "low",
+    "state": "resolved",
+    "opened_on": "2026-09-20",
+    "phone": null
+  }
+]

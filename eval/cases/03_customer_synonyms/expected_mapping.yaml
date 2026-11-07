@@ -1,0 +1,30 @@
+fields:
+  email:
+    sources:
+    - mailbox
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  full_name:
+    sources:
+    - display_name
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  plan:
+    sources:
+    - tier
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  signup_date:
+    sources:
+    - registered
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+drop: []
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows: []
+quarantine_reasons: {}

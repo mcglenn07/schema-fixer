@@ -1,0 +1,14 @@
+id: 02_customer_header_typos
+schema: ../../../schemas/customer.yaml
+input: incoming.csv
+description: Two transposed header letters; values are otherwise valid.
+breakages:
+- header_typos
+review_status: approved
+required_findings:
+- code: missing_required
+  field: email
+  source: null
+- code: likely_rename
+  field: full_name
+  source: full_nmae

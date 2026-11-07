@@ -1,0 +1,286 @@
+{
+  "provider": "baseline",
+  "case": "20_ticket_mixed_drift",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:33.674765+00:00",
+  "error": null,
+  "latency_seconds": 2.141699951607734e-05,
+  "mapping": {
+    "fields": [
+      {
+        "target": "ticket_id",
+        "sources": [
+          "ticketid"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Mutual-best header similarity; this is not semantic certainty."
+      },
+      {
+        "target": "requester_email",
+        "sources": [
+          "requester_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "subject",
+        "sources": [
+          "subject"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "priority",
+        "sources": [
+          "priority"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "created_date",
+        "sources": [
+          "created_date"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "phone",
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      }
+    ],
+    "drop": [
+      {
+        "sources": [
+          "debug"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      }
+    ],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": null,
+  "response_model": null,
+  "service_tier": null,
+  "cost_usd": 0.0,
+  "score": {
+    "field_correct": 5,
+    "field_total": 7,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 2,
+    "high_confidence_total": 7,
+    "quarantine_correct": false,
+    "case_passed": false,
+    "predicted_quarantine": {
+      "1": [
+        "created_date",
+        "priority"
+      ],
+      "2": [
+        "created_date",
+        "priority"
+      ],
+      "3": [
+        "created_date",
+        "priority"
+      ]
+    },
+    "checks": {
+      "passed": false,
+      "rows_checked": 3,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "priority",
+          "source": null,
+          "row": 1,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "created_date",
+          "source": null,
+          "row": 1,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "priority",
+          "source": null,
+          "row": 2,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "created_date",
+          "source": null,
+          "row": 2,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "priority",
+          "source": null,
+          "row": 3,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "created_date",
+          "source": null,
+          "row": 3,
+          "severity": "warning"
+        },
+        {
+          "code": "all_rows_failed_field",
+          "message": "All 3 checked rows failed this target field; review its mapping or transform.",
+          "field": "priority",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        },
+        {
+          "code": "all_rows_failed_field",
+          "message": "All 3 checked rows failed this target field; review its mapping or transform.",
+          "field": "created_date",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        }
+      ],
+      "quarantine_rows": [
+        1,
+        2,
+        3
+      ]
+    },
+    "failures": [
+      {
+        "case": "20_ticket_mixed_drift",
+        "field": "priority",
+        "expected": {
+          "sources": [
+            "priority"
+          ],
+          "transform": {
+            "name": "map_values",
+            "values": [
+              {
+                "source": "P1",
+                "target": "urgent"
+              },
+              {
+                "source": "P2",
+                "target": "high"
+              }
+            ]
+          }
+        },
+        "got": {
+          "sources": [
+            "priority"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "20_ticket_mixed_drift",
+        "field": "created_date",
+        "expected": {
+          "sources": [
+            "created_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%d-%m-%Y"
+          }
+        },
+        "got": {
+          "sources": [
+            "created_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "20_ticket_mixed_drift",
+        "field": "(quarantine)",
+        "expected": {
+          "3": [
+            "priority"
+          ]
+        },
+        "got": {
+          "1": [
+            "created_date",
+            "priority"
+          ],
+          "2": [
+            "created_date",
+            "priority"
+          ],
+          "3": [
+            "created_date",
+            "priority"
+          ]
+        },
+        "reason": "Predicted row positions or failing target fields differ."
+      }
+    ]
+  }
+}

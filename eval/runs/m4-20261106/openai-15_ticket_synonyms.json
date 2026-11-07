@@ -1,0 +1,152 @@
+{
+  "provider": "openai",
+  "case": "15_ticket_synonyms",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:38.060060+00:00",
+  "error": null,
+  "latency_seconds": 4.528151249993243,
+  "mapping": {
+    "fields": [
+      {
+        "target": "ticket_id",
+        "sources": [
+          "case_number"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Case numbers appear to identify tickets; samples share a consistent T-### pattern."
+      },
+      {
+        "target": "requester_email",
+        "sources": [
+          "sender"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.96,
+        "reason": "Sender is the likely requester email field; samples are redacted, so email validity cannot be verified."
+      },
+      {
+        "target": "subject",
+        "sources": [
+          "title"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Title corresponds directly to the ticket subject."
+      },
+      {
+        "target": "priority",
+        "sources": [
+          "severity"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Sample severity labels match the target priority vocabulary."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "state"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Sample state labels match the target status vocabulary."
+      },
+      {
+        "target": "created_date",
+        "sources": [
+          "opened_on"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 0.99,
+        "reason": "All samples use year-month-day with hyphens; format is directly supported by the samples."
+      },
+      {
+        "target": "phone",
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "string"
+        },
+        "confidence": 0.82,
+        "reason": "Source name matches the target; cast the inferred integer to string. Nulls may remain null."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1727,
+    "input_tokens_details": {
+      "cache_write_tokens": 495,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 452,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2179
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000300465,
+  "score": {
+    "field_correct": 6,
+    "field_total": 7,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 7,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {},
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 3,
+      "issues": [],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "15_ticket_synonyms",
+        "field": "created_date",
+        "expected": {
+          "sources": [
+            "opened_on"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "opened_on"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      }
+    ]
+  }
+}

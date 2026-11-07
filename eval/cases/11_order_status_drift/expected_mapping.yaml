@@ -1,0 +1,46 @@
+fields:
+  order_id:
+    sources:
+    - order_id
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  customer_email:
+    sources:
+    - customer_email
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  quantity:
+    sources:
+    - quantity
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  total:
+    sources:
+    - total
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  status:
+    sources:
+    - status
+    transform:
+      name: map_values
+      values:
+        Completed: paid
+        Awaiting payment: pending
+        Void: cancelled
+    reason: 'Use the source contract: Completed means paid, Void means cancelled.'
+  order_date:
+    sources:
+    - order_date
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+drop: []
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows: []
+quarantine_reasons: {}

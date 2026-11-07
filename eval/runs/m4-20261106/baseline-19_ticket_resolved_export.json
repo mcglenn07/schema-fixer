@@ -1,0 +1,146 @@
+{
+  "provider": "baseline",
+  "case": "19_ticket_resolved_export",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:33.673673+00:00",
+  "error": null,
+  "latency_seconds": 2.2375010303221643e-05,
+  "mapping": {
+    "fields": [
+      {
+        "target": "ticket_id",
+        "sources": [
+          "ticket_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "requester_email",
+        "sources": [
+          "requester_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "subject",
+        "sources": [
+          "subject"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "priority",
+        "sources": [
+          "priority"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "created_date",
+        "sources": [
+          "created_date"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "phone",
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      }
+    ],
+    "drop": [
+      {
+        "sources": [
+          "internal_note"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      },
+      {
+        "sources": [
+          "agent_id"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      }
+    ],
+    "unmapped_required": [
+      "status"
+    ],
+    "unmapped_optional": []
+  },
+  "usage": null,
+  "response_model": null,
+  "service_tier": null,
+  "cost_usd": 0.0,
+  "score": {
+    "field_correct": 7,
+    "field_total": 7,
+    "missing_correct": 1,
+    "missing_total": 1,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 6,
+    "quarantine_correct": true,
+    "case_passed": true,
+    "predicted_quarantine": {
+      "1": [
+        "status"
+      ],
+      "2": [
+        "status"
+      ],
+      "3": [
+        "status"
+      ]
+    },
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "status",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": []
+  }
+}

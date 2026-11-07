@@ -1,0 +1,17 @@
+id: 19_ticket_resolved_export
+schema: ../../../schemas/support_ticket.yaml
+input: incoming.csv
+description: 'Explicit fixture source contract: every ticket in this export is resolved,
+  but the status column is omitted. Review the constant carefully. Drop internal columns.'
+breakages:
+- missing_required
+- extra_columns
+- constant
+review_status: approved
+required_findings:
+- code: missing_required
+  field: status
+  source: null
+- code: extra_column
+  field: null
+  source: internal_note

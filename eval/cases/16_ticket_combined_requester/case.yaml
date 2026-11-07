@@ -1,0 +1,12 @@
+id: 16_ticket_combined_requester
+schema: ../../../schemas/support_ticket.yaml
+input: incoming.csv
+description: Requester contains display name then email, using a space-pipe-space
+  delimiter.
+breakages:
+- combined_fields
+review_status: approved
+required_findings:
+- code: missing_required
+  field: requester_email
+  source: null

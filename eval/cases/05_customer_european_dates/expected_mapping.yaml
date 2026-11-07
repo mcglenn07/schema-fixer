@@ -1,0 +1,34 @@
+fields:
+  email:
+    sources:
+    - email
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  full_name:
+    sources:
+    - full_name
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  plan:
+    sources:
+    - plan
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  signup_date:
+    sources:
+    - signup_date
+    transform:
+      name: parse_date
+      format: '%d/%m/%Y'
+    reason: The fixture contract is day/month/year.
+drop: []
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows:
+- 2
+quarantine_reasons:
+  2:
+  - 'signup_date: impossible calendar date'

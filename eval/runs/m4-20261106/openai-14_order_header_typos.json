@@ -1,0 +1,142 @@
+{
+  "provider": "openai",
+  "case": "14_order_header_typos",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:34.487122+00:00",
+  "error": null,
+  "latency_seconds": 3.56702358298935,
+  "mapping": {
+    "fields": [
+      {
+        "target": "order_id",
+        "sources": [
+          "order_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact name and string samples match the required identifier."
+      },
+      {
+        "target": "customer_email",
+        "sources": [
+          "customer_emali"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.98,
+        "reason": "Likely misspelling of customer_email; redacted samples prevent validating the email format."
+      },
+      {
+        "target": "quantity",
+        "sources": [
+          "quantitty"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "integer"
+        },
+        "confidence": 0.97,
+        "reason": "Likely misspelling of quantity; integer profile and samples agree."
+      },
+      {
+        "target": "total",
+        "sources": [
+          "total"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "number"
+        },
+        "confidence": 1.0,
+        "reason": "Exact name and numeric samples match the target type."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact name and samples match the target enum values."
+      },
+      {
+        "target": "order_date",
+        "sources": [
+          "order_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 1.0,
+        "reason": "Exact name; all samples use year-month-day with hyphens, including 2026-11-06."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1662,
+    "input_tokens_details": {
+      "cache_write_tokens": 430,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 286,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1948
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.00020934,
+  "score": {
+    "field_correct": 5,
+    "field_total": 6,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 6,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {},
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 3,
+      "issues": [],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "14_order_header_typos",
+        "field": "order_date",
+        "expected": {
+          "sources": [
+            "order_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "order_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      }
+    ]
+  }
+}

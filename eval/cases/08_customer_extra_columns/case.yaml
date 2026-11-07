@@ -1,0 +1,12 @@
+id: 08_customer_extra_columns
+schema: ../../../schemas/customer.yaml
+input: incoming.csv
+description: Two extra columns are dropped. The phone sample must be masked during
+  inspection.
+breakages:
+- extra_columns
+review_status: approved
+required_findings:
+- code: extra_column
+  field: null
+  source: phone_note

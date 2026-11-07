@@ -1,0 +1,4 @@
+ticket_id,requester_email,priority,status,created_date,phone,topic,detail
+T-101,ada@example.com,high,open,2026-11-06,+639171234567,Login,Cannot log in
+T-102,ben@example.com,normal,pending,2026-10-15,+12025550123,Billing,Invoice question
+T-103,cara@example.com,low,resolved,2026-09-20,,Account,Cancel account

@@ -1,0 +1,59 @@
+fields:
+  ticket_id:
+    sources:
+    - ticket_id
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  requester_email:
+    sources:
+    - requester_email
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  subject:
+    sources:
+    - subject
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  priority:
+    sources:
+    - priority
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  created_date:
+    sources:
+    - created_date
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  phone:
+    sources:
+    - phone
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  status:
+    sources: []
+    transform:
+      name: constant
+      value: resolved
+    reason: The fixture explicitly declares this a resolved-only export; this is not
+      inferred from missing data.
+drop:
+- sources:
+  - internal_note
+  transform:
+    name: drop
+  reason: Column is outside the target schema.
+- sources:
+  - agent_id
+  transform:
+    name: drop
+  reason: Column is outside the target schema.
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows: []
+quarantine_reasons: {}

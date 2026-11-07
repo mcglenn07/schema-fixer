@@ -1,0 +1,128 @@
+{
+  "provider": "openai",
+  "case": "07_customer_missing_email",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:03.789873+00:00",
+  "error": null,
+  "latency_seconds": 4.379213666004944,
+  "mapping": {
+    "fields": [
+      {
+        "target": "full_name",
+        "sources": [
+          "full_name"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Source name and samples directly support the required full name."
+      },
+      {
+        "target": "plan",
+        "sources": [
+          "plan"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Observed labels match the target enum values free and pro."
+      },
+      {
+        "target": "signup_date",
+        "sources": [
+          "signup_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 1.0,
+        "reason": "Samples use year-month-day with hyphens, e.g. 2026-11-06."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [
+      "email"
+    ],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1483,
+    "input_tokens_details": {
+      "cache_write_tokens": 251,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 319,
+    "output_tokens_details": {
+      "reasoning_tokens": 96
+    },
+    "total_tokens": 1802
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000203465,
+  "score": {
+    "field_correct": 3,
+    "field_total": 4,
+    "missing_correct": 1,
+    "missing_total": 1,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 3,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {
+      "1": [
+        "email"
+      ],
+      "2": [
+        "email"
+      ],
+      "3": [
+        "email"
+      ]
+    },
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "email",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "07_customer_missing_email",
+        "field": "signup_date",
+        "expected": {
+          "sources": [
+            "signup_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "signup_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      }
+    ]
+  }
+}

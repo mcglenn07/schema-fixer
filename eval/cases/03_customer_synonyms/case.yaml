@@ -1,0 +1,15 @@
+id: 03_customer_synonyms
+schema: ../../../schemas/customer.yaml
+input: incoming.csv
+description: Semantic header synonyms. M1 need not infer these; the expected mapping
+  is for the later provider evaluation.
+breakages:
+- synonyms
+review_status: approved
+required_findings:
+- code: missing_required
+  field: email
+  source: null
+- code: extra_column
+  field: null
+  source: tier

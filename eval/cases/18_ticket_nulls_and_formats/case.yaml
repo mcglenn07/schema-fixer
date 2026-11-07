@@ -1,0 +1,19 @@
+id: 18_ticket_nulls_and_formats
+schema: ../../../schemas/support_ticket.yaml
+input: incoming.json
+description: Row 2 lacks a subject and has an invalid email. Row 3 has blank priority
+  and an invalid phone.
+breakages:
+- null_required
+- format_mismatches
+review_status: approved
+required_findings:
+- code: null_required
+  field: subject
+  source: subject
+- code: format_mismatch
+  field: requester_email
+  source: requester_email
+- code: format_mismatch
+  field: phone
+  source: phone

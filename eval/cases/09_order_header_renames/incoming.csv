@@ -1,0 +1,4 @@
+Order ID,Customer Email,Quantity,Total,Status,Order Date
+O-101,ada@example.com,2,39.5,paid,2026-11-06
+O-102,ben@example.com,1,12.0,pending,2026-10-15
+O-103,cara@example.com,3,75.0,cancelled,2026-09-20

@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "run_id": "m4-20261106",
+  "started_at": "2026-11-06T15:28:33.646416+00:00",
+  "providers": [
+    "baseline",
+    "openai"
+  ],
+  "case_ids": [
+    "01_customer_spec_example",
+    "02_customer_header_typos",
+    "03_customer_synonyms",
+    "04_customer_combined_contact",
+    "05_customer_european_dates",
+    "06_customer_enum_drift",
+    "07_customer_missing_email",
+    "08_customer_extra_columns",
+    "09_order_header_renames",
+    "10_order_numeric_casts",
+    "11_order_status_drift",
+    "12_order_slash_dates",
+    "13_order_missing_total",
+    "14_order_header_typos",
+    "15_ticket_synonyms",
+    "16_ticket_combined_requester",
+    "17_ticket_split_subject",
+    "18_ticket_nulls_and_formats",
+    "19_ticket_resolved_export",
+    "20_ticket_mixed_drift"
+  ],
+  "model": "gpt-6-luna",
+  "dataset_sha256": "95d317e0baa66a71f69c7a7f29514001daf814412e02ffa24642cfaff790b913",
+  "code_sha256": "b829ebde5a83c659c749bbd7ef0c8b82e3a5e08186da127ff82cc09957f19398",
+  "pricing": {
+    "as_of": "2026-11-06",
+    "currency": "USD",
+    "source": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+    "cache_source": "https://developers.openai.com/api/docs/pricing",
+    "model": "gpt-6-luna",
+    "service_tier": "default",
+    "maximum_input_tokens": 272000,
+    "per_million_tokens": {
+      "input": 0.1,
+      "cached_input": 0.01,
+      "cache_write_30m": 0.125,
+      "cache_write_12h": 0.25,
+      "output": 0.5
+    }
+  },
+  "reasoning_effort": "low",
+  "max_retries": 0,
+  "max_output_tokens": 4096,
+  "service_tier": "default"
+}

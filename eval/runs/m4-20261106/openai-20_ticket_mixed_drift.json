@@ -1,0 +1,207 @@
+{
+  "provider": "openai",
+  "case": "20_ticket_mixed_drift",
+  "state": "complete",
+  "started_at": "2026-11-06T15:30:02.752816+00:00",
+  "error": null,
+  "latency_seconds": 5.264206666994141,
+  "mapping": {
+    "fields": [
+      {
+        "target": "ticket_id",
+        "sources": [
+          "ticketid"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Direct identifier match; samples preserve ticket IDs as strings."
+      },
+      {
+        "target": "requester_email",
+        "sources": [
+          "requester_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Exact field-name match and email format is declared; samples are redaction markers, not literal values."
+      },
+      {
+        "target": "subject",
+        "sources": [
+          "subject"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Exact field-name match with plausible subject samples."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Exact field-name match; all shown samples match target status values."
+      },
+      {
+        "target": "created_date",
+        "sources": [
+          "created_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%d-%m-%Y"
+        },
+        "confidence": 0.98,
+        "reason": "Samples use day-month-four-digit-year; 15-10-2026 establishes day-first ordering because 15 cannot be the month."
+      },
+      {
+        "target": "phone",
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "string"
+        },
+        "confidence": 0.8,
+        "reason": "Field name and redacted samples support a phone mapping; integer inference may risk loss of formatting or leading zeros."
+      }
+    ],
+    "drop": [
+      {
+        "sources": [
+          "priority"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.55,
+        "reason": "Samples P1, P2, and P9 do not establish a reliable mapping to the required priority enum; no evidence supports mapping P9."
+      },
+      {
+        "sources": [
+          "debug"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.99,
+        "reason": "Debug metadata has no corresponding target field."
+      }
+    ],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1763,
+    "input_tokens_details": {
+      "cache_write_tokens": 531,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 523,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2286
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000340465,
+  "score": {
+    "field_correct": 6,
+    "field_total": 7,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 6,
+    "quarantine_correct": false,
+    "case_passed": false,
+    "predicted_quarantine": null,
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unaccounted_target",
+          "message": "Target must be mapped or declared missing.",
+          "field": "priority",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "20_ticket_mixed_drift",
+        "field": "priority",
+        "expected": {
+          "sources": [
+            "priority"
+          ],
+          "transform": {
+            "name": "map_values",
+            "values": [
+              {
+                "source": "P1",
+                "target": "urgent"
+              },
+              {
+                "source": "P2",
+                "target": "high"
+              }
+            ]
+          }
+        },
+        "got": {
+          "invalid_accounting": 0
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "20_ticket_mixed_drift",
+        "field": "(drop)",
+        "expected": [
+          "debug"
+        ],
+        "got": [
+          "debug",
+          "priority"
+        ],
+        "reason": "Unused source accounting differs."
+      },
+      {
+        "case": "20_ticket_mixed_drift",
+        "field": "(structure)",
+        "expected": "valid source/target accounting",
+        "got": [
+          "unaccounted_target"
+        ],
+        "reason": "Local mapping checks rejected the structure."
+      },
+      {
+        "case": "20_ticket_mixed_drift",
+        "field": "(quarantine)",
+        "expected": {
+          "3": [
+            "priority"
+          ]
+        },
+        "got": "not evaluable",
+        "reason": "Predicted row positions or failing target fields differ."
+      }
+    ]
+  }
+}

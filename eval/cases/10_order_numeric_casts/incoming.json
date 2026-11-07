@@ -1,0 +1,26 @@
+[
+  {
+    "order_id": "O-101",
+    "customer_email": "ada@example.com",
+    "quantity": "2",
+    "total": "39.50",
+    "status": "paid",
+    "order_date": "2026-11-06"
+  },
+  {
+    "order_id": "O-102",
+    "customer_email": "ben@example.com",
+    "quantity": "many",
+    "total": "12.00",
+    "status": "pending",
+    "order_date": "2026-10-15"
+  },
+  {
+    "order_id": "O-103",
+    "customer_email": "cara@example.com",
+    "quantity": "3",
+    "total": "75.00",
+    "status": "cancelled",
+    "order_date": "2026-09-20"
+  }
+]

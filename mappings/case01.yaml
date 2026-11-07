@@ -1,0 +1,54 @@
+version: 1
+status: approved
+approved_at: '2026-11-06T14:43:28.070223+00:00'
+schema_path: ../schemas/customer.yaml
+schema_sha256: abcf91546e7dbf03ef39352b36c0dccd6b73064eab940bf66652f2217bae46fd
+source_columns:
+- Email Address
+- First
+- Last
+- Subscription
+- Joined
+mapping:
+  fields:
+  - target: email
+    sources:
+    - Email Address
+    transform:
+      name: rename
+    confidence: 1.0
+    reason: Email Address supplies the email; invalid values require quarantine.
+  - target: full_name
+    sources:
+    - First
+    - Last
+    transform:
+      name: combine
+      separator: ' '
+    confidence: 1.0
+    reason: Combine First and Last in the displayed name order.
+  - target: plan
+    sources:
+    - Subscription
+    transform:
+      name: map_values
+      values:
+      - source: Pro Monthly
+        target: pro
+      - source: Free
+        target: free
+    confidence: 1.0
+    reason: The two subscription labels correspond to the target pro and free plans.
+  - target: signup_date
+    sources:
+    - Joined
+    transform:
+      name: parse_date
+      format: '%m/%d/%y'
+    confidence: 1.0
+    reason: The sample 10/15/26 establishes month-first order because 15 cannot be
+      a month.
+  drop: []
+  unmapped_required: []
+  unmapped_optional: []
+approval_sha256: 5739bd53604d8f375a778787bdda02cba351a997c22750e865bcfc6ff23a3e6f

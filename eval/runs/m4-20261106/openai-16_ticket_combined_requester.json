@@ -1,0 +1,154 @@
+{
+  "provider": "openai",
+  "case": "16_ticket_combined_requester",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:42.595115+00:00",
+  "error": null,
+  "latency_seconds": 4.550353666010778,
+  "mapping": {
+    "fields": [
+      {
+        "target": "ticket_id",
+        "sources": [
+          "ticket_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Source matches the target name and contains ticket-like identifiers."
+      },
+      {
+        "target": "requester_email",
+        "sources": [
+          "requester"
+        ],
+        "transform": {
+          "name": "split",
+          "separator": " | ",
+          "index": 1
+        },
+        "confidence": 0.9,
+        "reason": "Requester samples contain an email after the exact delimiter; [EMAIL] is a redaction marker, not a literal value."
+      },
+      {
+        "target": "subject",
+        "sources": [
+          "subject"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Source matches the target name and contains subject-like text."
+      },
+      {
+        "target": "priority",
+        "sources": [
+          "priority"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.98,
+        "reason": "Sampled labels match allowed priority values; samples may not cover every source value."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.98,
+        "reason": "Sampled labels match allowed status values; samples may not cover every source value."
+      },
+      {
+        "target": "created_date",
+        "sources": [
+          "created_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 0.99,
+        "reason": "All samples use year-month-day with hyphens; the four-digit year is first."
+      },
+      {
+        "target": "phone",
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "string"
+        },
+        "confidence": 0.65,
+        "reason": "Source is named phone, but its integer inference and redacted samples make formatting and preservation of leading zeros uncertain."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1739,
+    "input_tokens_details": {
+      "cache_write_tokens": 507,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 483,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2222
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000317465,
+  "score": {
+    "field_correct": 6,
+    "field_total": 7,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 6,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {},
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 3,
+      "issues": [],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "16_ticket_combined_requester",
+        "field": "created_date",
+        "expected": {
+          "sources": [
+            "created_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "created_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      }
+    ]
+  }
+}

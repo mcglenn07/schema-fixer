@@ -1,0 +1,21 @@
+name: order
+fields:
+  order_id:
+    type: string
+    required: true
+  customer_email:
+    type: string
+    format: email
+    required: true
+  quantity:
+    type: integer
+    required: true
+  total:
+    type: number
+    required: true
+  status:
+    type: string
+    enum: [pending, paid, cancelled]
+    required: true
+  order_date:
+    type: date

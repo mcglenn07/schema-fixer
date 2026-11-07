@@ -1,0 +1,30 @@
+# Offline runtime draft based on SPEC and the synthetic case 01 input.
+# This file is not an approved mapping; review with schema-fixer approve first.
+fields:
+  - target: email
+    sources: [Email Address]
+    transform: {name: rename}
+    confidence: 1.0
+    reason: Email Address supplies the email; invalid values require quarantine.
+  - target: full_name
+    sources: [First, Last]
+    transform: {name: combine, separator: ' '}
+    confidence: 1.0
+    reason: Combine First and Last in the displayed name order.
+  - target: plan
+    sources: [Subscription]
+    transform:
+      name: map_values
+      values:
+        - {source: Pro Monthly, target: pro}
+        - {source: Free, target: free}
+    confidence: 1.0
+    reason: The two subscription labels correspond to the target pro and free plans.
+  - target: signup_date
+    sources: [Joined]
+    transform: {name: parse_date, format: '%m/%d/%y'}
+    confidence: 1.0
+    reason: The sample 10/15/26 establishes month-first order because 15 cannot be a month.
+drop: []
+unmapped_required: []
+unmapped_optional: []

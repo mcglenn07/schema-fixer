@@ -1,0 +1,154 @@
+{
+  "provider": "openai",
+  "case": "17_ticket_split_subject",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:47.152079+00:00",
+  "error": null,
+  "latency_seconds": 4.812443417002214,
+  "mapping": {
+    "fields": [
+      {
+        "target": "ticket_id",
+        "sources": [
+          "ticket_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Direct name and string samples match the required identifier."
+      },
+      {
+        "target": "requester_email",
+        "sources": [
+          "requester_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Direct name and redacted email samples support the match; original values are not visible."
+      },
+      {
+        "target": "subject",
+        "sources": [
+          "topic",
+          "detail"
+        ],
+        "transform": {
+          "name": "combine",
+          "separator": ": "
+        },
+        "confidence": 0.83,
+        "reason": "Topic and detail together appear to describe the ticket subject; exact desired formatting is uncertain."
+      },
+      {
+        "target": "priority",
+        "sources": [
+          "priority"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Direct name and sample labels match the target enum."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Direct name and sample labels match the target enum."
+      },
+      {
+        "target": "created_date",
+        "sources": [
+          "created_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 0.99,
+        "reason": "ISO-style samples show four-digit year first and hyphen separators; all visible dates follow this format."
+      },
+      {
+        "target": "phone",
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "string"
+        },
+        "confidence": 0.88,
+        "reason": "Phone is a direct name match; cast the inferred integer to string. Redacted samples conceal number formatting and 33.33% nulls indicate some records may lack a phone."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1765,
+    "input_tokens_details": {
+      "cache_write_tokens": 533,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 483,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2248
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000320715,
+  "score": {
+    "field_correct": 6,
+    "field_total": 7,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 7,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {},
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 3,
+      "issues": [],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "17_ticket_split_subject",
+        "field": "created_date",
+        "expected": {
+          "sources": [
+            "created_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "created_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+id: 20_ticket_mixed_drift
+schema: ../../../schemas/support_ticket.yaml
+input: incoming.json
+description: Header normalization, priority codes, day-month-year dates and an extra
+  column. P9 is unknown and must be quarantined.
+breakages:
+- renames
+- enum_drift
+- date_formats
+- extra_columns
+review_status: approved
+required_findings:
+- code: likely_rename
+  field: ticket_id
+  source: ticketid
+- code: enum_drift
+  field: priority
+  source: priority
+- code: format_mismatch
+  field: created_date
+  source: created_date

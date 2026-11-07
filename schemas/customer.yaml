@@ -1,0 +1,14 @@
+name: customer
+fields:
+  email:
+    type: string
+    format: email
+    required: true
+  full_name:
+    type: string
+    required: true
+  plan:
+    type: string
+    enum: [free, pro]
+  signup_date:
+    type: date

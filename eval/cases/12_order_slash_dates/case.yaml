@@ -1,0 +1,11 @@
+id: 12_order_slash_dates
+schema: ../../../schemas/order.yaml
+input: incoming.csv
+description: Dates use year/month/day with slashes.
+breakages:
+- date_formats
+review_status: approved
+required_findings:
+- code: format_mismatch
+  field: order_date
+  source: order_date

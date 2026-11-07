@@ -1,0 +1,40 @@
+fields:
+  email:
+    sources:
+    - email
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  full_name:
+    sources:
+    - full_name
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  plan:
+    sources:
+    - plan
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  signup_date:
+    sources:
+    - signup_date
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+drop:
+- sources:
+  - phone_note
+  transform:
+    name: drop
+  reason: Column is outside the target schema.
+- sources:
+  - internal_tag
+  transform:
+    name: drop
+  reason: Column is outside the target schema.
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows: []
+quarantine_reasons: {}

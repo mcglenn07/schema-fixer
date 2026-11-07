@@ -1,0 +1,14 @@
+id: 17_ticket_split_subject
+schema: ../../../schemas/support_ticket.yaml
+input: incoming.csv
+description: Combine topic and detail into a single readable subject with colon-space.
+breakages:
+- split_fields
+review_status: approved
+required_findings:
+- code: missing_required
+  field: subject
+  source: null
+- code: extra_column
+  field: null
+  source: topic

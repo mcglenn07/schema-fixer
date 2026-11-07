@@ -1,0 +1,114 @@
+{
+  "provider": "baseline",
+  "case": "13_order_missing_total",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:33.666406+00:00",
+  "error": null,
+  "latency_seconds": 1.345899363514036e-05,
+  "mapping": {
+    "fields": [
+      {
+        "target": "order_id",
+        "sources": [
+          "order_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "customer_email",
+        "sources": [
+          "customer_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "quantity",
+        "sources": [
+          "quantity"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "order_date",
+        "sources": [
+          "order_date"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [
+      "total"
+    ],
+    "unmapped_optional": []
+  },
+  "usage": null,
+  "response_model": null,
+  "service_tier": null,
+  "cost_usd": 0.0,
+  "score": {
+    "field_correct": 6,
+    "field_total": 6,
+    "missing_correct": 1,
+    "missing_total": 1,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 5,
+    "quarantine_correct": true,
+    "case_passed": true,
+    "predicted_quarantine": {
+      "1": [
+        "total"
+      ],
+      "2": [
+        "total"
+      ],
+      "3": [
+        "total"
+      ]
+    },
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "total",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": []
+  }
+}

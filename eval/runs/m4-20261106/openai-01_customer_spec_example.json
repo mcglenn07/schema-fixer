@@ -1,0 +1,122 @@
+{
+  "provider": "openai",
+  "case": "01_customer_spec_example",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:33.676413+00:00",
+  "error": null,
+  "latency_seconds": 6.971673624997493,
+  "mapping": {
+    "fields": [
+      {
+        "target": "email",
+        "sources": [
+          "Email Address"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.98,
+        "reason": "Column name and string samples marked [EMAIL] support the email field; original values are redacted."
+      },
+      {
+        "target": "full_name",
+        "sources": [
+          "First",
+          "Last"
+        ],
+        "transform": {
+          "name": "combine",
+          "separator": " "
+        },
+        "confidence": 0.98,
+        "reason": "First and Last provide complementary name parts; combine them with a space."
+      },
+      {
+        "target": "plan",
+        "sources": [
+          "Subscription"
+        ],
+        "transform": {
+          "name": "map_values",
+          "values": [
+            {
+              "source": "Free",
+              "target": "free"
+            },
+            {
+              "source": "Pro Monthly",
+              "target": "pro"
+            }
+          ]
+        },
+        "confidence": 0.82,
+        "reason": "Samples support these labels mapping to the target enum; other subscription labels may remain invalid and need validation."
+      },
+      {
+        "target": "signup_date",
+        "sources": [
+          "Joined"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%m/%d/%y"
+        },
+        "confidence": 0.82,
+        "reason": "Samples use slash-separated dates with a two-digit year; 10/15/26 establishes month/day/year because 15 cannot be the month."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1553,
+    "input_tokens_details": {
+      "cache_write_tokens": 1550,
+      "cached_tokens": 0,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 348,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1901
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.00036805,
+  "score": {
+    "field_correct": 4,
+    "field_total": 4,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 4,
+    "quarantine_correct": true,
+    "case_passed": true,
+    "predicted_quarantine": {
+      "3": [
+        "email"
+      ]
+    },
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 2,
+      "issues": [
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "email",
+          "source": null,
+          "row": 3,
+          "severity": "warning"
+        }
+      ],
+      "quarantine_rows": [
+        3
+      ]
+    },
+    "failures": []
+  }
+}

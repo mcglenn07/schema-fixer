@@ -1,0 +1,36 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      OPENAI_API_KEY: ''
+      PROVIDER: baseline
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: '0.11.32'
+          python-version: '3.12.13'
+          enable-cache: false
+      - name: Install locked dependencies
+        run: uv sync --locked --dev
+      - name: Ruff and pytest without network
+        # Checkout/setup need downloads. Checks run after setup with no network
+        # interfaces, no key, and no secrets injected into the job.
+        run: |
+          sudo unshare --net -- bash -eu -o pipefail -c '
+            .venv/bin/ruff check .
+            .venv/bin/ruff format --check app.py src tests eval/run_eval.py
+            .venv/bin/python -m pytest
+          '

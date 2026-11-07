@@ -1,0 +1,22 @@
+id: 01_customer_spec_example
+schema: ../../../schemas/customer.yaml
+input: incoming.csv
+description: 'The SPEC example: renamed email, split name, subscription labels, US
+  short dates; data row 3 has an invalid email.'
+breakages:
+- renames
+- split_fields
+- enum_drift
+- date_formats
+- format_mismatches
+review_status: approved
+required_findings:
+- code: missing_required
+  field: email
+  source: null
+- code: likely_rename
+  field: email
+  source: Email Address
+- code: format_mismatch
+  field: email
+  source: Email Address

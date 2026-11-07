@@ -1,0 +1,92 @@
+{
+  "provider": "baseline",
+  "case": "07_customer_missing_email",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:33.657699+00:00",
+  "error": null,
+  "latency_seconds": 9.333001798950136e-06,
+  "mapping": {
+    "fields": [
+      {
+        "target": "full_name",
+        "sources": [
+          "full_name"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "plan",
+        "sources": [
+          "plan"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "signup_date",
+        "sources": [
+          "signup_date"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [
+      "email"
+    ],
+    "unmapped_optional": []
+  },
+  "usage": null,
+  "response_model": null,
+  "service_tier": null,
+  "cost_usd": 0.0,
+  "score": {
+    "field_correct": 4,
+    "field_total": 4,
+    "missing_correct": 1,
+    "missing_total": 1,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 3,
+    "quarantine_correct": true,
+    "case_passed": true,
+    "predicted_quarantine": {
+      "1": [
+        "email"
+      ],
+      "2": [
+        "email"
+      ],
+      "3": [
+        "email"
+      ]
+    },
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "email",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": []
+  }
+}

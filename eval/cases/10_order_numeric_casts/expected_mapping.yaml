@@ -1,0 +1,47 @@
+fields:
+  order_id:
+    sources:
+    - order_id
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  customer_email:
+    sources:
+    - customer_email
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  quantity:
+    sources:
+    - quantity
+    transform:
+      name: cast
+      type: integer
+    reason: Produce integers; a nonnumeric token fails.
+  total:
+    sources:
+    - total
+    transform:
+      name: cast
+      type: number
+    reason: Produce numeric totals.
+  status:
+    sources:
+    - status
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  order_date:
+    sources:
+    - order_date
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+drop: []
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows:
+- 2
+quarantine_reasons:
+  2:
+  - 'quantity: cannot cast many to integer'

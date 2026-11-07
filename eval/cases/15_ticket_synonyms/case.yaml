@@ -1,0 +1,15 @@
+id: 15_ticket_synonyms
+schema: ../../../schemas/support_ticket.yaml
+input: incoming.json
+description: Support-system synonyms; values already follow the target enum and date
+  conventions.
+breakages:
+- synonyms
+review_status: approved
+required_findings:
+- code: missing_required
+  field: subject
+  source: null
+- code: extra_column
+  field: null
+  source: sender

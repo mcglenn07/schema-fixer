@@ -1,0 +1,12 @@
+id: 10_order_numeric_casts
+schema: ../../../schemas/order.yaml
+input: incoming.json
+description: JSON numeric strings require explicit output casts; many is not a valid
+  integer. M1 accepts numeric text as an input representation.
+breakages:
+- type_mismatches
+review_status: approved
+required_findings:
+- code: type_mismatch
+  field: quantity
+  source: quantity

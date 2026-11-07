@@ -1,0 +1,13 @@
+id: 11_order_status_drift
+schema: ../../../schemas/order.yaml
+input: incoming.csv
+description: Three source status labels have explicit target equivalents in this synthetic
+  export.
+breakages:
+- enum_drift
+- synonyms
+review_status: approved
+required_findings:
+- code: enum_drift
+  field: status
+  source: status

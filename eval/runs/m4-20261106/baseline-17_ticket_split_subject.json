@@ -1,0 +1,192 @@
+{
+  "provider": "baseline",
+  "case": "17_ticket_split_subject",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:33.671176+00:00",
+  "error": null,
+  "latency_seconds": 1.841600169427693e-05,
+  "mapping": {
+    "fields": [
+      {
+        "target": "ticket_id",
+        "sources": [
+          "ticket_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "requester_email",
+        "sources": [
+          "requester_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "priority",
+        "sources": [
+          "priority"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "created_date",
+        "sources": [
+          "created_date"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "phone",
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      }
+    ],
+    "drop": [
+      {
+        "sources": [
+          "topic"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      },
+      {
+        "sources": [
+          "detail"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      }
+    ],
+    "unmapped_required": [
+      "subject"
+    ],
+    "unmapped_optional": []
+  },
+  "usage": null,
+  "response_model": null,
+  "service_tier": null,
+  "cost_usd": 0.0,
+  "score": {
+    "field_correct": 6,
+    "field_total": 7,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 6,
+    "quarantine_correct": false,
+    "case_passed": false,
+    "predicted_quarantine": {
+      "1": [
+        "subject"
+      ],
+      "2": [
+        "subject"
+      ],
+      "3": [
+        "subject"
+      ]
+    },
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "subject",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "17_ticket_split_subject",
+        "field": "subject",
+        "expected": {
+          "sources": [
+            "topic",
+            "detail"
+          ],
+          "transform": {
+            "name": "combine",
+            "separator": ": "
+          }
+        },
+        "got": {
+          "state": "unmapped_required"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "17_ticket_split_subject",
+        "field": "(drop)",
+        "expected": [],
+        "got": [
+          "detail",
+          "topic"
+        ],
+        "reason": "Unused source accounting differs."
+      },
+      {
+        "case": "17_ticket_split_subject",
+        "field": "(quarantine)",
+        "expected": {},
+        "got": {
+          "1": [
+            "subject"
+          ],
+          "2": [
+            "subject"
+          ],
+          "3": [
+            "subject"
+          ]
+        },
+        "reason": "Predicted row positions or failing target fields differ."
+      }
+    ]
+  }
+}

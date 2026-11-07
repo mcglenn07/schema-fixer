@@ -1,0 +1,32 @@
+[
+  {
+    "ticketid": "T-101",
+    "requester_email": "ada@example.com",
+    "subject": "Cannot log in",
+    "priority": "P1",
+    "status": "open",
+    "created_date": "06-11-2026",
+    "phone": "+639171234567",
+    "debug": "synthetic"
+  },
+  {
+    "ticketid": "T-102",
+    "requester_email": "ben@example.com",
+    "subject": "Invoice question",
+    "priority": "P2",
+    "status": "pending",
+    "created_date": "15-10-2026",
+    "phone": "+12025550123",
+    "debug": "synthetic"
+  },
+  {
+    "ticketid": "T-103",
+    "requester_email": "cara@example.com",
+    "subject": "Cancel account",
+    "priority": "P9",
+    "status": "resolved",
+    "created_date": "20-09-2026",
+    "phone": null,
+    "debug": "synthetic"
+  }
+]

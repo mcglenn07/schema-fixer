@@ -1,0 +1,36 @@
+fields:
+  email:
+    sources:
+    - email
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  full_name:
+    sources:
+    - full_name
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  plan:
+    sources:
+    - plan
+    transform:
+      name: map_values
+      values:
+        FREE: free
+        Pro Monthly: pro
+    reason: Map known labels only; preserve unknown labels for validation.
+  signup_date:
+    sources:
+    - signup_date
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+drop: []
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows:
+- 3
+quarantine_reasons:
+  3:
+  - 'plan: Enterprise is not in the target enum'

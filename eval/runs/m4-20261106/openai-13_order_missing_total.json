@@ -1,0 +1,195 @@
+{
+  "provider": "openai",
+  "case": "13_order_missing_total",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:30.695488+00:00",
+  "error": null,
+  "latency_seconds": 3.78943554199941,
+  "mapping": {
+    "fields": [
+      {
+        "target": "order_id",
+        "sources": [
+          "order_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Source name and string samples directly match the required identifier."
+      },
+      {
+        "target": "customer_email",
+        "sources": [
+          "customer_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.95,
+        "reason": "Source name and redacted email samples support an email field; original values are not visible for format validation."
+      },
+      {
+        "target": "quantity",
+        "sources": [
+          "quantity"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "integer"
+        },
+        "confidence": 0.99,
+        "reason": "Integer profile and numeric samples match the required integer."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "All samples match the allowed status labels."
+      },
+      {
+        "target": "order_date",
+        "sources": [
+          "order_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 1.0,
+        "reason": "Samples use year-month-day order with hyphens; the four-digit year establishes the year position."
+      }
+    ],
+    "drop": [
+      {
+        "sources": [
+          "total"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.99,
+        "reason": "Unused source; no target total can be mapped because no profile for this source is supplied."
+      }
+    ],
+    "unmapped_required": [
+      "total"
+    ],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1618,
+    "input_tokens_details": {
+      "cache_write_tokens": 386,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 276,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1894
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.00019884,
+  "score": {
+    "field_correct": 5,
+    "field_total": 6,
+    "missing_correct": 1,
+    "missing_total": 1,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 5,
+    "quarantine_correct": false,
+    "case_passed": false,
+    "predicted_quarantine": null,
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "total",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        },
+        {
+          "code": "missing_drop_source",
+          "message": "A dropped source column does not exist.",
+          "field": null,
+          "source": "total",
+          "row": null,
+          "severity": "error"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "13_order_missing_total",
+        "field": "order_date",
+        "expected": {
+          "sources": [
+            "order_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "order_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "13_order_missing_total",
+        "field": "(drop)",
+        "expected": [],
+        "got": [
+          "total"
+        ],
+        "reason": "Unused source accounting differs."
+      },
+      {
+        "case": "13_order_missing_total",
+        "field": "(structure)",
+        "expected": "valid source/target accounting",
+        "got": [
+          "missing_drop_source"
+        ],
+        "reason": "Local mapping checks rejected the structure."
+      },
+      {
+        "case": "13_order_missing_total",
+        "field": "(quarantine)",
+        "expected": {
+          "1": [
+            "total"
+          ],
+          "2": [
+            "total"
+          ],
+          "3": [
+            "total"
+          ]
+        },
+        "got": "not evaluable",
+        "reason": "Predicted row positions or failing target fields differ."
+      }
+    ]
+  }
+}

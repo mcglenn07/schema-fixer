@@ -1,0 +1,23 @@
+[
+  {
+    "order_id": "O-101",
+    "customer_email": "ada@example.com",
+    "quantity": 2,
+    "status": "paid",
+    "order_date": "2026-11-06"
+  },
+  {
+    "order_id": "O-102",
+    "customer_email": "ben@example.com",
+    "quantity": 1,
+    "status": "pending",
+    "order_date": "2026-10-15"
+  },
+  {
+    "order_id": "O-103",
+    "customer_email": "cara@example.com",
+    "quantity": 3,
+    "status": "cancelled",
+    "order_date": "2026-09-20"
+  }
+]

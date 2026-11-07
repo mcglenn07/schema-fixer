@@ -1,0 +1,25 @@
+name: support_ticket
+fields:
+  ticket_id:
+    type: string
+    required: true
+  requester_email:
+    type: string
+    format: email
+    required: true
+  subject:
+    type: string
+    required: true
+  priority:
+    type: string
+    enum: [low, normal, high, urgent]
+    required: true
+  status:
+    type: string
+    enum: [open, pending, resolved]
+    required: true
+  created_date:
+    type: date
+  phone:
+    type: string
+    format: phone

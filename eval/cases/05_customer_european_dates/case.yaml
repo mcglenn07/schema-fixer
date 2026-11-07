@@ -1,0 +1,12 @@
+id: 05_customer_european_dates
+schema: ../../../schemas/customer.yaml
+input: incoming.csv
+description: Day/month/year dates; row 2 is an impossible calendar date and must remain
+  invalid after parsing.
+breakages:
+- date_formats
+review_status: approved
+required_findings:
+- code: format_mismatch
+  field: signup_date
+  source: signup_date

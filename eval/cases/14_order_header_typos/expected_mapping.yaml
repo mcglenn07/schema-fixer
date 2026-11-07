@@ -1,0 +1,42 @@
+fields:
+  order_id:
+    sources:
+    - order_id
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  total:
+    sources:
+    - total
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  status:
+    sources:
+    - status
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  order_date:
+    sources:
+    - order_date
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  quantity:
+    sources:
+    - quantitty
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  customer_email:
+    sources:
+    - customer_emali
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+drop: []
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows: []
+quarantine_reasons: {}

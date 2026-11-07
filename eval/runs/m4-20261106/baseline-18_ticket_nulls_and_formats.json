@@ -1,0 +1,160 @@
+{
+  "provider": "baseline",
+  "case": "18_ticket_nulls_and_formats",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:33.672198+00:00",
+  "error": null,
+  "latency_seconds": 1.3875003787688911e-05,
+  "mapping": {
+    "fields": [
+      {
+        "target": "ticket_id",
+        "sources": [
+          "ticket_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "requester_email",
+        "sources": [
+          "requester_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "subject",
+        "sources": [
+          "subject"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "priority",
+        "sources": [
+          "priority"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "created_date",
+        "sources": [
+          "created_date"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "phone",
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": null,
+  "response_model": null,
+  "service_tier": null,
+  "cost_usd": 0.0,
+  "score": {
+    "field_correct": 7,
+    "field_total": 7,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 7,
+    "quarantine_correct": true,
+    "case_passed": true,
+    "predicted_quarantine": {
+      "2": [
+        "requester_email",
+        "subject"
+      ],
+      "3": [
+        "phone",
+        "priority"
+      ]
+    },
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 1,
+      "issues": [
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "requester_email",
+          "source": null,
+          "row": 2,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (string_type); this row would be quarantined.",
+          "field": "subject",
+          "source": null,
+          "row": 2,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (string_type); this row would be quarantined.",
+          "field": "priority",
+          "source": null,
+          "row": 3,
+          "severity": "warning"
+        },
+        {
+          "code": "row_invalid",
+          "message": "Target validation failed (value_error); this row would be quarantined.",
+          "field": "phone",
+          "source": null,
+          "row": 3,
+          "severity": "warning"
+        }
+      ],
+      "quarantine_rows": [
+        2,
+        3
+      ]
+    },
+    "failures": []
+  }
+}

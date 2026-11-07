@@ -1,0 +1,4 @@
+ticket_id,subject,priority,status,created_date,phone,requester
+T-101,Cannot log in,high,open,2026-11-06,+639171234567,Ada Reyes | ada@example.com
+T-102,Invoice question,normal,pending,2026-10-15,+12025550123,Ben Cruz | ben@example.com
+T-103,Cancel account,low,resolved,2026-09-20,,Cara Lim | cara@example.com

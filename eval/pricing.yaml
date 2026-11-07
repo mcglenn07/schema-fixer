@@ -1,0 +1,13 @@
+as_of: '2026-11-06'
+currency: USD
+source: https://developers.openai.com/api/docs/models/gpt-6-luna
+cache_source: https://developers.openai.com/api/docs/pricing
+model: gpt-6-luna
+service_tier: default
+maximum_input_tokens: 272000
+per_million_tokens:
+  input: 0.10
+  cached_input: 0.01
+  cache_write_30m: 0.125
+  cache_write_12h: 0.25
+  output: 0.50

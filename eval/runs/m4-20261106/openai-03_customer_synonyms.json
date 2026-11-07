@@ -1,0 +1,159 @@
+{
+  "provider": "openai",
+  "case": "03_customer_synonyms",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:44.137923+00:00",
+  "error": null,
+  "latency_seconds": 3.927510875000735,
+  "mapping": {
+    "fields": [
+      {
+        "target": "email",
+        "sources": [
+          "mailbox"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Mailbox is a direct match for email; samples are redacted markers, so the underlying values cannot be inspected."
+      },
+      {
+        "target": "full_name",
+        "sources": [
+          "display_name"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Display name directly matches full_name."
+      },
+      {
+        "target": "plan",
+        "sources": [
+          "tier"
+        ],
+        "transform": {
+          "name": "map_values",
+          "values": [
+            {
+              "source": "free",
+              "target": "free"
+            },
+            {
+              "source": "pro",
+              "target": "pro"
+            }
+          ]
+        },
+        "confidence": 0.99,
+        "reason": "The sampled tier labels match the target plan enum; unlisted values remain unchanged and may fail validation."
+      },
+      {
+        "target": "signup_date",
+        "sources": [
+          "registered"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 0.99,
+        "reason": "Samples use year-month-day with hyphen separators; the four-digit year is first."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1521,
+    "input_tokens_details": {
+      "cache_write_tokens": 289,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 322,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1843
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000209715,
+  "score": {
+    "field_correct": 2,
+    "field_total": 4,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 2,
+    "high_confidence_total": 4,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {},
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 3,
+      "issues": [],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "03_customer_synonyms",
+        "field": "plan",
+        "expected": {
+          "sources": [
+            "tier"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "tier"
+          ],
+          "transform": {
+            "name": "map_values",
+            "values": [
+              {
+                "source": "free",
+                "target": "free"
+              },
+              {
+                "source": "pro",
+                "target": "pro"
+              }
+            ]
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "03_customer_synonyms",
+        "field": "signup_date",
+        "expected": {
+          "sources": [
+            "registered"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "registered"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      }
+    ]
+  }
+}

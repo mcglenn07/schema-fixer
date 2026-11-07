@@ -1,0 +1,185 @@
+{
+  "provider": "openai",
+  "case": "10_order_numeric_casts",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:16.784944+00:00",
+  "error": null,
+  "latency_seconds": 4.255772749995231,
+  "mapping": {
+    "fields": [
+      {
+        "target": "order_id",
+        "sources": [
+          "order_id"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Same-name string source matches the target; samples support the identifier format."
+      },
+      {
+        "target": "customer_email",
+        "sources": [
+          "customer_email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.95,
+        "reason": "Same-name source is non-null and the target requires an email; redacted samples prevent direct format verification."
+      },
+      {
+        "target": "total",
+        "sources": [
+          "total"
+        ],
+        "transform": {
+          "name": "cast",
+          "type": "number"
+        },
+        "confidence": 1.0,
+        "reason": "All supplied samples are numeric and match the target number type."
+      },
+      {
+        "target": "status",
+        "sources": [
+          "status"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Supplied labels match the target enum exactly."
+      },
+      {
+        "target": "order_date",
+        "sources": [
+          "order_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 1.0,
+        "reason": "Samples use year-month-day; the four-digit year appears first, as in 2026-11-06."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [
+      "quantity"
+    ],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1660,
+    "input_tokens_details": {
+      "cache_write_tokens": 428,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 349,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2009
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.00024059,
+  "score": {
+    "field_correct": 4,
+    "field_total": 6,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 5,
+    "quarantine_correct": false,
+    "case_passed": false,
+    "predicted_quarantine": null,
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "quantity",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        },
+        {
+          "code": "unaccounted_source",
+          "message": "Every source must be mapped or explicitly dropped.",
+          "field": null,
+          "source": "quantity",
+          "row": null,
+          "severity": "error"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "10_order_numeric_casts",
+        "field": "quantity",
+        "expected": {
+          "sources": [
+            "quantity"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "state": "unmapped_required"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "10_order_numeric_casts",
+        "field": "order_date",
+        "expected": {
+          "sources": [
+            "order_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "order_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "10_order_numeric_casts",
+        "field": "(structure)",
+        "expected": "valid source/target accounting",
+        "got": [
+          "unaccounted_source"
+        ],
+        "reason": "Local mapping checks rejected the structure."
+      },
+      {
+        "case": "10_order_numeric_casts",
+        "field": "(quarantine)",
+        "expected": {
+          "2": [
+            "quantity"
+          ]
+        },
+        "got": "not evaluable",
+        "reason": "Predicted row positions or failing target fields differ."
+      }
+    ]
+  }
+}

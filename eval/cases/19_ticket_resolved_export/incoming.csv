@@ -1,0 +1,4 @@
+ticket_id,requester_email,subject,priority,created_date,phone,internal_note,agent_id
+T-101,ada@example.com,Cannot log in,high,2026-11-06,+639171234567,Email ada@example.com or call +63 917 123 4567,A-7
+T-102,ben@example.com,Invoice question,normal,2026-10-15,+12025550123,Email ada@example.com or call +63 917 123 4567,A-7
+T-103,cara@example.com,Cancel account,low,2026-09-20,,Email ada@example.com or call +63 917 123 4567,A-7

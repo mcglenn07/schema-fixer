@@ -1,0 +1,139 @@
+{
+  "provider": "openai",
+  "case": "08_customer_extra_columns",
+  "state": "complete",
+  "started_at": "2026-11-06T15:29:08.172655+00:00",
+  "error": null,
+  "latency_seconds": 4.23245224999846,
+  "mapping": {
+    "fields": [
+      {
+        "target": "email",
+        "sources": [
+          "email"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Direct identity match; samples are redaction markers, so actual email validity cannot be verified."
+      },
+      {
+        "target": "full_name",
+        "sources": [
+          "full_name"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Direct identity match and samples contain full names."
+      },
+      {
+        "target": "plan",
+        "sources": [
+          "plan"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Direct identity match; observed labels fit the target enum."
+      },
+      {
+        "target": "signup_date",
+        "sources": [
+          "signup_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 0.99,
+        "reason": "Samples follow year-month-day order; for example, 2026-11-06 has a four-digit year first."
+      }
+    ],
+    "drop": [
+      {
+        "sources": [
+          "phone_note"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.99,
+        "reason": "Phone note has no corresponding target field."
+      },
+      {
+        "sources": [
+          "internal_tag"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.99,
+        "reason": "Internal tag has no corresponding target field."
+      }
+    ],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1585,
+    "input_tokens_details": {
+      "cache_write_tokens": 353,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 370,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1955
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.000241715,
+  "score": {
+    "field_correct": 3,
+    "field_total": 4,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 4,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {},
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 3,
+      "issues": [],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "08_customer_extra_columns",
+        "field": "signup_date",
+        "expected": {
+          "sources": [
+            "signup_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "signup_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      }
+    ]
+  }
+}

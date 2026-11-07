@@ -1,0 +1,34 @@
+fields:
+  full_name:
+    sources:
+    - full_name
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  plan:
+    sources:
+    - plan
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+  signup_date:
+    sources:
+    - signup_date
+    transform:
+      name: rename
+    reason: Use the source field unchanged.
+drop: []
+unmapped_required:
+- email
+unmapped_optional: []
+expected_quarantine_rows:
+- 1
+- 2
+- 3
+quarantine_reasons:
+  1:
+  - 'email: required field has no source'
+  2:
+  - 'email: required field has no source'
+  3:
+  - 'email: required field has no source'

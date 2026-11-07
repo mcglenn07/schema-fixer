@@ -1,0 +1,329 @@
+{
+  "provider": "baseline",
+  "case": "15_ticket_synonyms",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:33.668566+00:00",
+  "error": null,
+  "latency_seconds": 6.0417005443014205e-05,
+  "mapping": {
+    "fields": [
+      {
+        "target": "phone",
+        "sources": [
+          "phone"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      }
+    ],
+    "drop": [
+      {
+        "sources": [
+          "case_number"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      },
+      {
+        "sources": [
+          "sender"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      },
+      {
+        "sources": [
+          "title"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      },
+      {
+        "sources": [
+          "severity"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      },
+      {
+        "sources": [
+          "state"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      },
+      {
+        "sources": [
+          "opened_on"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      }
+    ],
+    "unmapped_required": [
+      "ticket_id",
+      "requester_email",
+      "subject",
+      "priority",
+      "status"
+    ],
+    "unmapped_optional": [
+      "created_date"
+    ]
+  },
+  "usage": null,
+  "response_model": null,
+  "service_tier": null,
+  "cost_usd": 0.0,
+  "score": {
+    "field_correct": 1,
+    "field_total": 7,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 1,
+    "quarantine_correct": false,
+    "case_passed": false,
+    "predicted_quarantine": {
+      "1": [
+        "priority",
+        "requester_email",
+        "status",
+        "subject",
+        "ticket_id"
+      ],
+      "2": [
+        "priority",
+        "requester_email",
+        "status",
+        "subject",
+        "ticket_id"
+      ],
+      "3": [
+        "priority",
+        "requester_email",
+        "status",
+        "subject",
+        "ticket_id"
+      ]
+    },
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "ticket_id",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        },
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "requester_email",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        },
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "subject",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        },
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "priority",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        },
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "status",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        },
+        {
+          "code": "unmapped_optional",
+          "message": "Optional target will remain empty.",
+          "field": "created_date",
+          "source": null,
+          "row": null,
+          "severity": "warning"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "15_ticket_synonyms",
+        "field": "ticket_id",
+        "expected": {
+          "sources": [
+            "case_number"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "state": "unmapped_required"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "15_ticket_synonyms",
+        "field": "requester_email",
+        "expected": {
+          "sources": [
+            "sender"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "state": "unmapped_required"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "15_ticket_synonyms",
+        "field": "subject",
+        "expected": {
+          "sources": [
+            "title"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "state": "unmapped_required"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "15_ticket_synonyms",
+        "field": "priority",
+        "expected": {
+          "sources": [
+            "severity"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "state": "unmapped_required"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "15_ticket_synonyms",
+        "field": "status",
+        "expected": {
+          "sources": [
+            "state"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "state": "unmapped_required"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "15_ticket_synonyms",
+        "field": "created_date",
+        "expected": {
+          "sources": [
+            "opened_on"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "state": "unmapped_optional"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "15_ticket_synonyms",
+        "field": "(drop)",
+        "expected": [],
+        "got": [
+          "case_number",
+          "opened_on",
+          "sender",
+          "severity",
+          "state",
+          "title"
+        ],
+        "reason": "Unused source accounting differs."
+      },
+      {
+        "case": "15_ticket_synonyms",
+        "field": "(quarantine)",
+        "expected": {},
+        "got": {
+          "1": [
+            "priority",
+            "requester_email",
+            "status",
+            "subject",
+            "ticket_id"
+          ],
+          "2": [
+            "priority",
+            "requester_email",
+            "status",
+            "subject",
+            "ticket_id"
+          ],
+          "3": [
+            "priority",
+            "requester_email",
+            "status",
+            "subject",
+            "ticket_id"
+          ]
+        },
+        "reason": "Predicted row positions or failing target fields differ."
+      }
+    ]
+  }
+}

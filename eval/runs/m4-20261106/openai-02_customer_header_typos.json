@@ -1,0 +1,118 @@
+{
+  "provider": "openai",
+  "case": "02_customer_header_typos",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:40.755626+00:00",
+  "error": null,
+  "latency_seconds": 3.3763872909912607,
+  "mapping": {
+    "fields": [
+      {
+        "target": "email",
+        "sources": [
+          "emali"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Likely misspelling of email; samples are redacted email markers, so actual format cannot be verified."
+      },
+      {
+        "target": "full_name",
+        "sources": [
+          "full_nmae"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Likely misspelling of full_name; samples are person names."
+      },
+      {
+        "target": "plan",
+        "sources": [
+          "plan"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.99,
+        "reason": "Direct name match; sampled values fit the target enum."
+      },
+      {
+        "target": "signup_date",
+        "sources": [
+          "signup_date"
+        ],
+        "transform": {
+          "name": "parse_date",
+          "format": "%Y-%m-%d"
+        },
+        "confidence": 0.99,
+        "reason": "Samples use year-month-day with hyphens; 2026-11-06 shows a four-digit year first."
+      }
+    ],
+    "drop": [],
+    "unmapped_required": [],
+    "unmapped_optional": []
+  },
+  "usage": {
+    "input_tokens": 1524,
+    "input_tokens_details": {
+      "cache_write_tokens": 292,
+      "cached_tokens": 1229,
+      "cache_write_tokens_details": null
+    },
+    "output_tokens": 213,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1737
+  },
+  "response_model": "gpt-6-luna",
+  "service_tier": "default",
+  "cost_usd": 0.00015559,
+  "score": {
+    "field_correct": 3,
+    "field_total": 4,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 1,
+    "high_confidence_total": 4,
+    "quarantine_correct": true,
+    "case_passed": false,
+    "predicted_quarantine": {},
+    "checks": {
+      "passed": true,
+      "rows_checked": 3,
+      "valid_rows": 3,
+      "issues": [],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "02_customer_header_typos",
+        "field": "signup_date",
+        "expected": {
+          "sources": [
+            "signup_date"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "sources": [
+            "signup_date"
+          ],
+          "transform": {
+            "name": "parse_date",
+            "format": "%Y-%m-%d"
+          }
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      }
+    ]
+  }
+}

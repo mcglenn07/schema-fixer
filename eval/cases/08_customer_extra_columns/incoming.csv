@@ -1,0 +1,4 @@
+email,full_name,plan,signup_date,phone_note,internal_tag
+ada@example.com,Ada Reyes,pro,2026-11-06,+63 917 123 4567,legacy
+ben@example.com,Ben Cruz,free,2026-10-15,+63 917 123 4567,legacy
+cara@example.com,Cara Lim,pro,2026-09-20,+63 917 123 4567,legacy

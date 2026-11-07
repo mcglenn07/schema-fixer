@@ -1,0 +1,39 @@
+fields:
+  email:
+    sources:
+    - Email Address
+    transform:
+      name: rename
+    reason: Email Address means email.
+  full_name:
+    sources:
+    - First
+    - Last
+    transform:
+      name: combine
+      separator: ' '
+    reason: Join given and family names in source order.
+  plan:
+    sources:
+    - Subscription
+    transform:
+      name: map_values
+      values:
+        Pro Monthly: pro
+        Free: free
+    reason: The fixture uses these two subscription labels.
+  signup_date:
+    sources:
+    - Joined
+    transform:
+      name: parse_date
+      format: '%m/%d/%y'
+    reason: This fixture explicitly uses month/day/two-digit year.
+drop: []
+unmapped_required: []
+unmapped_optional: []
+expected_quarantine_rows:
+- 3
+quarantine_reasons:
+  3:
+  - 'email: invalid email syntax'

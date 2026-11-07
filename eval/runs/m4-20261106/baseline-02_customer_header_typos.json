@@ -1,0 +1,146 @@
+{
+  "provider": "baseline",
+  "case": "02_customer_header_typos",
+  "state": "complete",
+  "started_at": "2026-11-06T15:28:33.652465+00:00",
+  "error": null,
+  "latency_seconds": 2.2832988179288805e-05,
+  "mapping": {
+    "fields": [
+      {
+        "target": "full_name",
+        "sources": [
+          "full_nmae"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 0.875,
+        "reason": "Mutual-best header similarity; this is not semantic certainty."
+      },
+      {
+        "target": "plan",
+        "sources": [
+          "plan"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      },
+      {
+        "target": "signup_date",
+        "sources": [
+          "signup_date"
+        ],
+        "transform": {
+          "name": "rename"
+        },
+        "confidence": 1.0,
+        "reason": "Exact header match; values still require validation."
+      }
+    ],
+    "drop": [
+      {
+        "sources": [
+          "emali"
+        ],
+        "transform": {
+          "name": "drop"
+        },
+        "confidence": 0.0,
+        "reason": "Unmatched source; review before discarding any data."
+      }
+    ],
+    "unmapped_required": [
+      "email"
+    ],
+    "unmapped_optional": []
+  },
+  "usage": null,
+  "response_model": null,
+  "service_tier": null,
+  "cost_usd": 0.0,
+  "score": {
+    "field_correct": 3,
+    "field_total": 4,
+    "missing_correct": 0,
+    "missing_total": 0,
+    "high_confidence_wrong": 0,
+    "high_confidence_total": 3,
+    "quarantine_correct": false,
+    "case_passed": false,
+    "predicted_quarantine": {
+      "1": [
+        "email"
+      ],
+      "2": [
+        "email"
+      ],
+      "3": [
+        "email"
+      ]
+    },
+    "checks": {
+      "passed": false,
+      "rows_checked": 0,
+      "valid_rows": 0,
+      "issues": [
+        {
+          "code": "unmapped_required",
+          "message": "Required target has no proposed source.",
+          "field": "email",
+          "source": null,
+          "row": null,
+          "severity": "error"
+        }
+      ],
+      "quarantine_rows": []
+    },
+    "failures": [
+      {
+        "case": "02_customer_header_typos",
+        "field": "email",
+        "expected": {
+          "sources": [
+            "emali"
+          ],
+          "transform": {
+            "name": "rename"
+          }
+        },
+        "got": {
+          "state": "unmapped_required"
+        },
+        "reason": "Source, transform, parameters or missing-field decision differs."
+      },
+      {
+        "case": "02_customer_header_typos",
+        "field": "(drop)",
+        "expected": [],
+        "got": [
+          "emali"
+        ],
+        "reason": "Unused source accounting differs."
+      },
+      {
+        "case": "02_customer_header_typos",
+        "field": "(quarantine)",
+        "expected": {},
+        "got": {
+          "1": [
+            "email"
+          ],
+          "2": [
+            "email"
+          ],
+          "3": [
+            "email"
+          ]
+        },
+        "reason": "Predicted row positions or failing target fields differ."
+      }
+    ]
+  }
+}
